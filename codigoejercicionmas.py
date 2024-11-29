@@ -45,7 +45,7 @@ def load_data(url):
 
 # Página de inicio
 def home():
-    st.title("Bienvenido a la App Multi-páginas")
+    st.title("Visualizacion intreractiva de datos con streamlit y REST countries API")
     st.write("Usa el menú de la izquierda para navegar entre las secciones.")
     st.write("1. Carga datos desde una URL en la página 'Cargar Datos'.")
     st.write("2. Visualiza gráficos en la página 'Gráficos'.")
