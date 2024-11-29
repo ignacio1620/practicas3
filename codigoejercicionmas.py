@@ -93,7 +93,7 @@ def graficos():
 
     chart_type = st.selectbox(
         "Selecciona el tipo de gráfico:",
-        ["Selecciona una opción", "Línea", "Barras", "Histograma", "Dispersión", "Boxplot"],
+        ["Selecciona una opción", "Línea", "Barras", "Histograma", "Dispersión"],
     )
 
     if st.button("Generar Gráfico"):
