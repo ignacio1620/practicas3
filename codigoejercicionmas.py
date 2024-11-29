@@ -50,7 +50,7 @@ def home():
     st.write("1. Carga datos desde una URL en la página 'Cargar Datos'.")
     st.write("2. Visualiza gráficos en la página 'Gráficos'.")
     st.image(
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE41TLiqLS4oI4U1pWKhtk5Y_m5HmuGsJZRg&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE41TLiqLS4oI4U1pWKhtk5Y_m5HmuGsJZRg&s/800x300",
         use_column_width=True,
     )
 
