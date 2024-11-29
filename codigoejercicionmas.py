@@ -112,7 +112,7 @@ def graficos():
             # Gráfico de barras
             elif chart_type == "Barras":
                 if len(selected_columns) == 1:
-                    ax.bar(data.index, data[selected_columns[0]])
+                    ax.bar(data[selected_columns[0]], data[selected_columns[1]])
                     ax.set_title("Gráfico de Barras")
                     ax.set_xlabel("Índice")
                     ax.set_ylabel(selected_columns[0])
