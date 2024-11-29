@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-import seaborn as sns
+
 
 # Configuración inicial
 st.set_page_config(page_title="App Multi-páginas", layout="wide")
