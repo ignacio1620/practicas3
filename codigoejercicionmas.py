@@ -101,8 +101,8 @@ def graficos():
             
             # Gráfico de línea
             if chart_type == "Línea":
-                for col in selected_columns:
-                    ax.plot(data.index, data[col], label=col)
+                
+                ax.plot(data.index, data[selected_columns[0]], label=col)
                 ax.legend()
                 ax.set_title("Gráfico de Línea")
                 ax.set_xlabel("Índice")
