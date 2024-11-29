@@ -112,7 +112,7 @@ def graficos():
             # Gráfico de barras
             elif chart_type == "Barras":
                 if len(selected_columns) == 1:
-                    ax.bar(data[selected_columns[0]], data[selected_columns[1]])
+                    ax.bar(data.index, data[selected_columns[0]])
                     ax.set_title("Gráfico de Barras")
                     ax.set_xlabel("Índice")
                     ax.set_ylabel(selected_columns[0])
@@ -137,14 +137,6 @@ def graficos():
                     ax.set_title("Gráfico de Dispersión")
                 else:
                     st.warning("Selecciona exactamente dos columnas para un gráfico de dispersión.")
-            
-            # Gráfico de Boxplot
-            elif chart_type == "Boxplot":
-                sns.boxplot(data=data[selected_columns], ax=ax)
-                ax.set_title("Gráfico de Boxplot")
-                ax.set_xlabel("Categoría")
-                ax.set_ylabel("Valor")
-
             st.pyplot(fig)
         else:
             st.warning("Por favor, selecciona columnas y un tipo de gráfico.")
