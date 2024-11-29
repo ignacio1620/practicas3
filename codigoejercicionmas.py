@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import requests
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Configuración inicial
 st.set_page_config(page_title="App Multi-páginas", layout="wide")
@@ -45,11 +47,10 @@ def load_data(url):
 
 # Página de inicio
 def home():
-    st.title("Visualizacion interactiva de datos con streamlit y API REST countries")
+    st.title("Visualización interactiva de datos con Streamlit y API REST Countries")
     st.write("Usa el menú de la izquierda para navegar entre las secciones.")
     st.write("1. Carga datos desde una URL en la página 'Cargar Datos'.")
     st.write("2. Visualiza gráficos en la página 'Gráficos'.")
-   
 
 # Página para cargar datos
 def cargar_datos():
@@ -91,28 +92,42 @@ def graficos():
 
     chart_type = st.selectbox(
         "Selecciona el tipo de gráfico:",
-        ["Selecciona una opción", "Línea", "Barras", "Histograma", "Dispersión"],
+        ["Selecciona una opción", "Línea", "Barras", "Histograma", "Dispersión", "Boxplot"],
     )
 
     if st.button("Generar Gráfico"):
         if selected_columns and chart_type != "Selecciona una opción":
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize=(10, 6))
+            
+            # Gráfico de línea
             if chart_type == "Línea":
                 for col in selected_columns:
                     ax.plot(data.index, data[col], label=col)
                 ax.legend()
                 ax.set_title("Gráfico de Línea")
+                ax.set_xlabel("Índice")
+                ax.set_ylabel("Valor")
+            
+            # Gráfico de barras
             elif chart_type == "Barras":
                 if len(selected_columns) == 1:
                     ax.bar(data.index, data[selected_columns[0]])
                     ax.set_title("Gráfico de Barras")
+                    ax.set_xlabel("Índice")
+                    ax.set_ylabel(selected_columns[0])
                 else:
                     st.warning("Selecciona solo una columna para un gráfico de barras.")
+            
+            # Gráfico de histograma
             elif chart_type == "Histograma":
                 for col in selected_columns:
                     ax.hist(data[col].dropna(), bins=20, alpha=0.5, label=col)
                 ax.legend()
                 ax.set_title("Histograma")
+                ax.set_xlabel("Valor")
+                ax.set_ylabel("Frecuencia")
+            
+            # Gráfico de dispersión
             elif chart_type == "Dispersión":
                 if len(selected_columns) == 2:
                     ax.scatter(data[selected_columns[0]], data[selected_columns[1]])
@@ -121,6 +136,14 @@ def graficos():
                     ax.set_title("Gráfico de Dispersión")
                 else:
                     st.warning("Selecciona exactamente dos columnas para un gráfico de dispersión.")
+            
+            # Gráfico de Boxplot
+            elif chart_type == "Boxplot":
+                sns.boxplot(data=data[selected_columns], ax=ax)
+                ax.set_title("Gráfico de Boxplot")
+                ax.set_xlabel("Categoría")
+                ax.set_ylabel("Valor")
+
             st.pyplot(fig)
         else:
             st.warning("Por favor, selecciona columnas y un tipo de gráfico.")
@@ -135,6 +158,7 @@ pages = {
 st.sidebar.title("Navegación")
 selected_page = st.sidebar.radio("Selecciona una página:", list(pages.keys()))
 pages[selected_page]()
+
 
 
 
