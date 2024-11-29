@@ -103,7 +103,7 @@ def graficos():
             # Gráfico de línea
             if chart_type == "Línea":
                 
-                ax.plot(data.index, data[selected_columns[0]], label=col)
+                ax.plot(data.index, data[selected_columns[0]], label=selected_columns[0])
                 ax.legend()
                 ax.set_title("Gráfico de Línea")
                 ax.set_xlabel("Índice")
